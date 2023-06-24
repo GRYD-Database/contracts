@@ -28,4 +28,6 @@ deployments/localhost
 !testnet_deployed.json
 
 # Misc
-contractsInfo.json
+contractsInfo.jsons
+
+.openzeppelin
