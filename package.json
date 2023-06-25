@@ -7,8 +7,8 @@
     "lint:fix": "eslint --fix \"**/*.{js,ts}\"",
     "format": "prettier --write \"**/*.{ts,js,sol}\"",
     "compile": "hardhat compile",
-    "deploy:hardhat": "hardhat run scripts/deployer.ts --network hardhat",
-    "deploy:testnet": "hardhat run scripts/deployer.ts --network testnet"
+    "deploy:hardhat": "hardhat run deploy/deployer.ts --network hardhat",
+    "deploy:testnet": "hardhat run deploy/deployer.ts --network testnet"
   },
   "repository": "git@github.com:GRYD-Database/contracts.git",
   "author": "GRYD Developers",
@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@chainlink/contracts": "^0.6.1",
-    "@openzeppelin/contracts": "^4.8.1",
+    "@openzeppelin/contracts": "^4.0.0",
     "@openzeppelin/contracts-upgradeable": "^4.8.1",
     "@openzeppelin/hardhat-upgrades": "^1.22.1",
     "base64-sol": "^1.1.0",

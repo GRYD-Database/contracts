@@ -18,6 +18,8 @@ node_modules/
 # Env
 .env
 
+package-lock.json
+
 # hardhat-deploy
 deployments/hardhat
 deployments/localhost
