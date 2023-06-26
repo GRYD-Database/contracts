@@ -25,7 +25,7 @@ contract GRYD is ERC20, ERC20Burnable {
     }
 
     constructor(address _owner)
-    ERC20("GRYD Token","GRYD")
+    ERC20("GRYD Token", "GRYD")
     {
         owner = _owner;
         _mint(msg.sender, 100000000 * 10 ** 18);

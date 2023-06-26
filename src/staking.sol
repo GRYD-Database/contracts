@@ -48,4 +48,5 @@ contract Staking is ERC20, ERC20Burnable, ReentrancyGuard {
         }
         return true;
     }
+
 }

@@ -124,6 +124,10 @@ async function main() {
   // Deploy the staking contract and set metadata
   deployed = await deployStaking(deployed)
 
+  let isFuncTest = true;
+  if (isFuncTest) {
+    await buyStorage(deployed);
+  }
   // writer
   await writeFile(deployed)
 
@@ -208,6 +212,17 @@ async function setMetadata(
   deployed['contracts'][contractName]['url'] = config.url + "address/" + address;
 
   return deployed
+}
+
+async function buyStorage(deployedData: any) {
+  const grydContract = new ethers.Contract(
+    deployedData['contracts']['gryd']['address'],
+    grydABI.abi,
+    account
+  );
+
+  const caller = await grydContract.buyStorage(account.address, "eventTest1", 20);
+  console.log(caller.transactionHash)
 }
 
 async function writeFile(deployed: any) {
