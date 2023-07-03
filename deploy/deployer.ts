@@ -177,7 +177,6 @@ async function deployGRYD(deployed: any) {
   return await setMetadata(deployTx, "gryd", deployed, GRYDToken.address, grydABI.abi, grydABI.bytecode.toString())
 }
 
-
 async function deployStaking(deployed: any) {
   //set args
   let args: string[] = [];
@@ -221,7 +220,7 @@ async function buyStorage(deployedData: any) {
     account
   );
 
-  const caller = await grydContract.buyStorage(account.address, "eventTest1", 20);
+  const caller = await grydContract.buyStorage("eventTest1", 20);
   console.log(caller.transactionHash)
 }
 

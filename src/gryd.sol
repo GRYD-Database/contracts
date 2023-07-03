@@ -37,8 +37,7 @@ contract GRYD is ERC20, ERC20Burnable {
         _mint(to, amount);
     }
 
-    function buyStorage(address buyer, string memory username, uint256 size) external {
-        require(buyer != address(0), "buyer cannot be the zero address");
+    function buyStorage(string memory username, uint256 size) external {
         require(size != 0, "_storage cannot be zero");
         bytes memory tempEmptyUsername = bytes(username);
         require(tempEmptyUsername.length != 0, "username cannot be empty");
@@ -46,12 +45,12 @@ contract GRYD is ERC20, ERC20Burnable {
         totalBuyers += 1;
 
         BuyStorage memory _buyStorage;
-        _buyStorage.buyer = buyer;
+        _buyStorage.buyer = _msgSender();
         _buyStorage.userName = username;
         _buyStorage.size = size;
 
         buyers[totalBuyers] = _buyStorage;
 
-        emit StorageBought(buyer, username, size);
+        emit StorageBought(_msgSender(), username, size);
     }
 }
