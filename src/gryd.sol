@@ -8,16 +8,14 @@ contract GRYD is ERC20, ERC20Burnable {
 
     address owner;
 
-    struct BuyStorage {
-        address buyer;
-        string userName;
-        uint256 size;
+    struct Create {
+        address user;
     }
 
-    event StorageBought(address buyer, string userName, uint256 size);
+    event InsertDataSuccess(address User, string QueryType);
 
-    mapping(uint256 => BuyStorage) buyers;
-    uint256 totalBuyers;
+    mapping(uint256 => Create) buyers;
+    uint256 totalUsers;
 
     modifier onlyOwner() {
         require(owner == _msgSender(), "Not authorized");
@@ -29,28 +27,22 @@ contract GRYD is ERC20, ERC20Burnable {
     {
         owner = _owner;
         _mint(msg.sender, 100000000 * 10 ** 18);
-        uint256 _totalBuyers = 0;
-        totalBuyers = _totalBuyers;
+        uint256 _totalUsers = 0;
+        totalUsers = _totalUsers;
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
 
-    function buyStorage(string memory username, uint256 size) external {
-        require(size != 0, "_storage cannot be zero");
-        bytes memory tempEmptyUsername = bytes(username);
-        require(tempEmptyUsername.length != 0, "username cannot be empty");
+    function create() external {
+        totalUsers += 1;
 
-        totalBuyers += 1;
+        Create memory _create;
+        _create.user = _msgSender();
 
-        BuyStorage memory _buyStorage;
-        _buyStorage.buyer = _msgSender();
-        _buyStorage.userName = username;
-        _buyStorage.size = size;
+        buyers[totalUsers] = _create;
 
-        buyers[totalBuyers] = _buyStorage;
-
-        emit StorageBought(_msgSender(), username, size);
+        emit InsertDataSuccess(_msgSender(), "create");
     }
 }

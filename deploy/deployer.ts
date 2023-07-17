@@ -220,7 +220,7 @@ async function buyStorage(deployedData: any) {
     account
   );
 
-  const caller = await grydContract.buyStorage("eventTest1", 20);
+  const caller = await grydContract.create();
   console.log(caller.transactionHash)
 }
 
